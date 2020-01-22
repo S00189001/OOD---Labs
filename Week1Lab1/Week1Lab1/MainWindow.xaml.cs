@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,15 @@ namespace Week1Lab1
     public partial class MainWindow : Window
     {
         List<Bands> listOfBands = new List<Bands>();
+        public string FilePath;
         
         public MainWindow()
         {
             InitializeComponent();
+
+            // Sets File Path to the current Directory on Runtime
+            FilePath = Directory.GetCurrentDirectory();
+
             listOfBands.Add(new Rock()
             {
                 bandName = "AC / DC",
@@ -69,12 +75,24 @@ namespace Week1Lab1
 
             UI_BandsListbox.ItemsSource = listOfBands;
             listOfBands.Sort();
+
+            UI_GenreDropdown.ItemsSource = Enum.GetNames(typeof(BandGenre));
             
         }
 
         private void UI_BandsListbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
+        }
+
+        private void UI_GenreDropdown_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void UI_SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            File.WriteAllText(FilePath, listOfBands.ToString());
         }
     }
 }
