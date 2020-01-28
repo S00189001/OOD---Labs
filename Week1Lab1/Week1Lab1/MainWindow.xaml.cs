@@ -22,11 +22,13 @@ namespace Week1Lab1
     public partial class MainWindow : Window
     {
         List<Bands> listOfBands = new List<Bands>();
+        public Bands bands;
         public string FilePath;
         
         public MainWindow()
         {
             InitializeComponent();
+            UI_GenreDropdown.SelectedIndex = 0;
 
             // Sets File Path to the current Directory on Runtime
             FilePath = Directory.GetCurrentDirectory();
@@ -87,7 +89,10 @@ namespace Week1Lab1
 
         private void UI_GenreDropdown_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (UI_GenreDropdown.SelectedIndex == 1)
+            {
+                UI_BandsListbox.ItemsSource = BandGenre.Rock.ToString();
+            }
         }
 
         private void UI_SaveButton_Click(object sender, RoutedEventArgs e)

@@ -8,9 +8,10 @@ namespace Week1Lab1
 {
     public enum BandGenre
     {
-        Rock,
-        Pop,
-        Indie
+        All, //0
+        Rock,//1
+        Pop, //2
+        Indie//3
     }
 
     public abstract class Bands : IComparable
